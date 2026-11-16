@@ -26,7 +26,7 @@ class Server:
                             self.workers[header.worker_id] = addr
                             print(f"added: {header.worker_id}")
                     case MsgType.TASK_RESULT:
-                        print(f"{header.worker_id}: {payload}")
+                        print(f"Worker #{header.worker_id} answers task #{header.task_id} with {str(payload)}")
 
             if random.random() < 0.05 and len(self.workers) > 0:
                 self.sock.sendto(Header(MsgType.TASK_DISPATCH, 
